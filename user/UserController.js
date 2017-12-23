@@ -8,9 +8,9 @@ var User = require('./user');
 // CREATES A NEW USER
 router.post('/', function (req, res) {
     User.create({
-            name : req.body.name,
-            email : req.body.email, 
-            password : req.body.password
+            name : req.body.namesignup,
+            email : req.body.emailsignup, 
+            password : req.body.passwordsignup
         },
         function (err, user) {
             if (err) return res.status(500).send("There was a problem adding the information to the database.");
@@ -46,8 +46,8 @@ router.delete('/:id', function (req, res) {
 // UPDATES A SINGLE USER IN THE DATABASE
 router.put('/:id', function (req, res) {
     User.findByIdAndUpdate(req.params.id, req.body, {new: true}, function (err, user) {
-        if (err) return res.status(500).send("There was a problem updating the user.");
-        res.status(200).send(user);
+        if (err) return res.status(200).send("There was a problem updating the user.");
+        res.status(200).send("Update was Successful");
     });
 
 });

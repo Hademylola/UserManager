@@ -1,6 +1,8 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# User Manager
+# User Manager....
+Kindly create a folder "C:data\db" in C drive as i used a 32 bit system
+mongod --storageEngine=mmapv1 --dbpath C:\data\db
 
 This repository contains a simple demo API built with NodeJS.
 The API is used to manage users in a MongoDB database.
