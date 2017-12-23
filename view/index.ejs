@@ -1,0 +1,202 @@
+
+<html>
+<head>
+<title>Git Hub</title>
+<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script src="js/ajax.js"></script>
+</head>
+<style>
+a{
+	color:#fff;
+
+}
+
+a:link{
+	color:#fff;
+	text-decoration:none;
+}
+a:visited{
+	
+	color:#fff;
+	text-decoration:none;
+
+}
+
+</style>
+<script>
+$(document).ready(function(){
+	$("#signupdiv").hide();
+	$("#showallusers").hide();
+	$("#showauser").hide();
+	$("#deleteuser").hide();
+	$("#updateuser").hide();
+
+	setInterval(function(){
+
+	name = $("#namesignup").val();
+	email = $("#emailsignup").val();
+	password = $("#passwordsignup").val();
+
+	if(name != "" && email!= "" && password!=""){
+
+	$("#submit").removeAttr('disabled');
+	}
+	else{
+		$("#submit").attr('disabled','disabled');
+
+	}
+
+	
+
+
+	},1000)
+	$("#createsignup").click(function(){
+
+	$("#signupdiv").slideToggle();
+
+	});
+	$("#clickshowallusers").click(function(){
+
+	$("#showallusers").slideToggle();
+
+	});
+
+	$("#clickshowauser").click(function(){
+
+	$("#showauser").slideToggle();
+	$("#showauser").focus();
+
+	$("#fetch").click(function(){
+
+
+
+		var id  = document.getElementById('fetchid').value;
+
+		if(id != ""){
+		window.location = "/users/"+id;
+		$("#fetchid").val("");
+		}
+		else{
+		alert("Provide the User's ID");
+		}
+		
+
+		
+
+	  });
+	
+	
+	});
+
+	
+
+	$("#clickdeleteuser").click(function(){
+
+		$("#deleteuser").slideToggle();
+		$("#deletebtn").click(function(){
+
+		var x = document.getElementById('txtdeleteuser').value;
+		$.ajax({
+
+		type:"delete",
+		url:"users/?id="+ x
+
+	}).done(function(response){
+
+		window.location.replace("/index");
+
+	})
+		});
+
+		});
+
+		$("#clickupdateuser").click(function(){
+
+			$("#updateuser").slideToggle();
+
+
+
+		})
+
+
+
+})
+
+</script>
+<body>
+<div style="width:100%; border:0px solid #000;"; >
+<div style="position: absolute;z-index: 4;left:22%;top:20%" ><h2 style="color:#500000">GIT HUB MANAGER</h2></div>
+<div  style="width:65%;margin-left:20%; height:200px;background-color:#fff;border-top:1px solid #000;border-radius:12px" >
+<img src="\banner.jpg" style="width:100%;" />
+
+<div style="width:100%;height:auto" id="body" align="center">
+<h3 style="text-decoration:underline">Users Application Manager </h3>
+<br>
+<div style="border:1px solid #000;width:25%;color:#bebebe;color:#fff; cursor:pointer;background-color:#500000" id="createsignup"><br>Create an Account</div><br>
+<div id="signupdiv">
+<form method="post" action="/users">
+<input type="text" id= "namesignup" name="namesignup" placeholder="Username is Required"/><br><br>
+<input type="text" name="emailsignup" id="emailsignup" placeholder="Email is Required"/><br><br>
+<input type="password" name="passwordsignup" id="passwordsignup" placeholder="Password is Required"/><br><br>
+
+<input type="submit" value="Login" id="submit" name="login"><br><br><br>
+</form>
+
+</div>
+<div style="width:40%"><hr style="width:30%;float:left"> OR <hr style="width:30%;float:right"></div>
+<br>
+<div style="border:1px solid #000;width:25%;color:#bebebe;color:#fff; cursor:pointer;background-color:#500000" id="clickshowallusers"><br><a href="/users" >Show All User List</a></div><br>
+<div id="showallusers">
+
+</div>
+<div style="width:40%"><hr style="width:30%;float:left"> OR <hr style="width:30%;float:right"></div>
+<br>
+<div style="border:1px solid #000;width:25%; color:#bebebe;color:#fff; cursor:pointer;background-color:#500000" id="clickshowauser"><br>Show A User's Account</div><br>
+<div id="showauser"><input type="text" id="fetchid" placeholder="Provide User's ID"/><input type="button" id="fetch" value="FetchUser"/></div>
+
+<div style="width:40%"><hr style="width:30%;float:left"> OR <hr style="width:30%;float:right"></div>
+<br>
+<div style="border:1px solid #000;width:25%;color:#bebebe;color:#fff; cursor:pointer;background-color:#500000" id="clickupdateuser"><br>Update User's Profile</div><br>
+<div id="updateuser">
+
+<input type="text" id="userid" name="name" placeholder="The User's Id is Required"/><br><br>
+<input type="text" id="nameupdate" name="name" placeholder="Username is Required"/><br><br>
+<input type="text" id="emailupdate" name="email" placeholder="Email is Required"/><br><br>
+<input type="password" id="passwordupdate" name="password" placeholder="Password is Required"/><br><br>
+<input type="submit" value="Update" id="update" name="update"><br><br><br>
+
+
+
+</div>
+
+<div style="width:40%"><hr style="width:30%;float:left"> OR <hr style="width:30%;float:right"></div>
+<br>
+<div style="border:1px solid #000;width:25%;color:#bebebe;color:#fff; cursor:pointer;background-color:#500000" id="clickdeleteuser"><br>Delete User Account</div><br>
+<div id="deleteuser"><input type="text" id="txtdeleteuser" placeholder="Provide the User's ID"/><input type="button" value="Delete" id="deletebtn"/></div>
+</div>
+
+
+
+
+
+
+
+
+<div style="border-radius:120px; border-bottom:3px solid #500000;" align="center">
+<div style="width:100%;background-color:#000;color:#fff">@Davincydacode<div>
+
+</div>
+</div>
+
+
+
+
+
+</div>
+
+
+</body>
+</html>
+
+
